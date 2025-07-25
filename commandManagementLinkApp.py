@@ -83,6 +83,7 @@ styled_df = df_display.style.apply(highlight_grade_col, subset=["등급"])\
                             .apply(highlight_reemphasis_col, subset=["재강조 여부"])
 
 st.dataframe(
+    styled_df,
     df_display.style.apply(highlight_grade_col, subset=["등급"]), 
     use_container_width=True,
     hide_index=True
