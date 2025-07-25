@@ -71,7 +71,6 @@ df_display = filtered_df[columns_to_show]
 # 👉 지시사항 목록 테이블 출력
 st.subheader("📄 지시사항 목록")
 st.dataframe(df_display.style.apply(highlight_grade_col, subset=["등급"]), use_container_width=True)
-// st.dataframe(df,hide_index=True)
 
 # 안내 문구
 st.caption("※ 추진율 수치는 구글 스프레드시트에서 입력 후 자동 반영됩니다.")
