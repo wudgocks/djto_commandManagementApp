@@ -24,6 +24,10 @@ def highlight_grade_col(s):
             'background-color: red; color: white; font-weight: bold' if v == '하' else ''
             for v in s]
 
+# 재강조 여부 스타일링 함수
+def highlight_reemphasis_col(s):
+    return ['color: red; font-weight: bold' if str(v).strip() == '재강조' else '' for v in s]
+
 # 데이터 로딩
 @st.cache_data(ttl=60)
 def load_data():
@@ -69,7 +73,7 @@ col3.metric("하 (0~49%)", (df["등급"] == "하").sum())
 st.markdown("---")
 
 # 👉 테이블 컬럼 구성
-columns_to_show = ["연번", "부서명", "관리번호", "일시", "분류", "주요내용", "추진율", "등급", "재강조여부"]
+columns_to_show = ["연번", "부서명", "관리번호", "일시", "분류", "재강조여부","주요내용", "추진율", "등급" ]
 df_display = filtered_df[columns_to_show]
 
 # 👉 지시사항 목록 테이블 출력
