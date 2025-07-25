@@ -30,6 +30,10 @@ def load_data():
     df = pd.read_csv(CSV_URL)
     return df
 
+# CSV 변환 함수 (utf-8-sig 인코딩)
+def convert_df_to_csv(df):
+    return df.to_csv(index=False, encoding='utf-8-sig')
+
 # 페이지 설정
 st.set_page_config(page_title="임원 지시사항 대시보드", layout="wide")
 st.title("📋 임원지시사항 추진현황 대시보드")
