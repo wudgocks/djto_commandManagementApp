@@ -78,6 +78,10 @@ df_display = filtered_df[columns_to_show]
 
 # 👉 지시사항 목록 테이블 출력
 st.subheader("📄 지시사항 목록")
+
+styled_df = df_display.style.apply(highlight_grade_col, subset=["등급"])\
+                            .apply(highlight_reemphasis_col, subset=["재강조 여부"])
+
 st.dataframe(
     df_display.style.apply(highlight_grade_col, subset=["등급"]), 
     use_container_width=True,
