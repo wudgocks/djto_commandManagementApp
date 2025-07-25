@@ -73,21 +73,29 @@ col3.metric("하 (0~49%)", (df["등급"] == "하").sum())
 st.markdown("---")
 
 # 👉 테이블 컬럼 구성
-columns_to_show = ["연번", "부서명", "관리번호", "일시", "분류", "재강조여부","주요내용", "추진율", "등급" ]
+columns_to_show = ["연번", "부서명", "관리번호", "일시", "분류", "재강조여부", "주요내용", "추진율", "등급"]
 df_display = filtered_df[columns_to_show]
 
 # 👉 지시사항 목록 테이블 출력
 st.subheader("📄 지시사항 목록")
 
 styled_df = df_display.style.apply(highlight_grade_col, subset=["등급"])\
-                            .apply(highlight_reemphasis_col, subset=["재강조 여부"])
+                            .apply(highlight_reemphasis_col, subset=["재강조여부"])
 
 st.dataframe(
     styled_df,
-    df_display.style.apply(highlight_grade_col, subset=["등급"]), 
     use_container_width=True,
     hide_index=True
-    )
+)
+
+# CSV 다운로드 버튼
+csv_data = convert_df_to_csv(df_display)
+st.download_button(
+    label="CSV 다운로드",
+    data=csv_data,
+    file_name="임원지시사항.csv",
+    mime='text/csv',
+)
 
 # 안내 문구
 st.caption("※ 추진율 수치는 구글 스프레드시트에서 입력 후 자동 반영됩니다.")
